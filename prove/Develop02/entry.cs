@@ -3,7 +3,7 @@
 using System.ComponentModel;
 
 public class Entry{
-    PromptGeneration promptGen = new PromptGeneration();
+    PromptGeneration _promptGen = new PromptGeneration();
     public string _entry;
 
     // list of entries
@@ -15,7 +15,7 @@ public class Entry{
     public string GetUserEntry(){
 
         // get a random prompt
-        string _promptForEntry = promptGen.GetRandomPrompt();
+        string _promptForEntry = _promptGen.GetRandomPrompt();
 
         // get an entry
         Console.WriteLine("For each enrty you get a random prompt.");

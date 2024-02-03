@@ -5,7 +5,6 @@ using System.Xml;
 public class Journal{
 
     
-    Entry entry = new Entry();
     // file name, can be changed
     
     
