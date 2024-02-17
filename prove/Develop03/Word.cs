@@ -6,22 +6,19 @@ public class Word
 {
     Scripture _scripture;
 
-    private string _title;
-
-    private string _text;
     private List<string> _wordList = new List<string>();
 
     private List<string> _displayWords = new List<string>();
 
     Random ran = new Random();
 
-    public Word(Scripture scripture)
+    public Word(string verse, string book)
     {
-        _scripture = scripture;
-        
+        _scripture = new Scripture(verse, book);
+
     }
 
-    public void ranWord()
+    public void RanWord()
     {
 
         bool done = false;
@@ -31,30 +28,29 @@ public class Word
 
             int index = ran.Next(_wordList.Count);
 
-            if (_wordList[index] != "used")
+            if (_wordList[index] != "alreadyHidden")
             {
-                _wordList[index] = new string("used");
                 _displayWords[index] = new string('_', _wordList[index].Length);
+                _wordList[index] = new string("alreadyHidden");
                 done = true;
             }
         }
     }
 
-    public void getWords()
+    public void GetWords()
     {
-
-        _wordList = _scripture.wordList();
-        _displayWords = _scripture.wordList();
-
+        _wordList = _scripture.WordList();
+        _displayWords = _scripture.WordList();
     }
 
-    public void display()
+    public void Display()
     {
         bool learning = true;
         while (learning)
         {
 
-            Console.WriteLine(_title);
+            Console.Clear();
+            Console.WriteLine(_scripture.GetBook());
             Console.WriteLine(string.Join(" ", _displayWords));
 
             Console.Write("Hit enter to continue or q to quit: ");
@@ -63,14 +59,13 @@ public class Word
             {
                 learning = false;
             }
+            else if (IsComplete()) {
 
-            else if (IsComplete())
-            {
                 learning = false;
             }
             else
             {
-                ranWord();
+                RanWord();
             }
         }
 
@@ -81,7 +76,7 @@ public class Word
 
         foreach (string word in _wordList)
         {
-            if (word != "used")
+            if (word != "alreadyHidden" && word != "\n")
             {
                 return false;
             }
@@ -89,4 +84,6 @@ public class Word
 
         return true;
     }
+
+
 }

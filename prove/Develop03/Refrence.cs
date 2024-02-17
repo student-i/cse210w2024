@@ -2,17 +2,37 @@ using System.ComponentModel;
 
 public class Refrence
 {
-    private KeyValuePair<string, string> _refrences = new KeyValuePair<string, string>();
+    private List<string> _keys = new List<string>();
+
+    private List<string> _values = new List<string>();
 
 
     public void AddRefrence(string key, string value)
     {
-        _refrences = new KeyValuePair<string, string>(key, value);
+        _keys.Add(key);
+        _values.Add(value);
     }
 
-    public string findRefrence(string key)
+    public string FindRefrence(int index, string type)
     {
-        return _refrences.Value;
+
+        if (type == "text")
+        {
+            return _values[index];
+        }
+
+        else
+
+            return _keys[index];
+
+    }
+    public int RanRefrence()
+    {
+        Random ran = new Random();
+
+        int randomIndex = ran.Next(_keys.Count);
+
+        return randomIndex;
     }
 
 }
