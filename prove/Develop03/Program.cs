@@ -77,7 +77,7 @@ class Program
 
                 word.Display();
 
-                Console.WriteLine("Would you like to get another scripture? y/n");
+                Console.Write("Would you like to get another scripture? y/n");
                 again = Console.ReadLine()[0];
 
             }
