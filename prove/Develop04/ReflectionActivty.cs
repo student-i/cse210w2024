@@ -28,7 +28,7 @@ public class ReflectionActivity : Activity
     public ReflectionActivity(string type, string description) : base(type, description)
     {
     }
-    public string getPrompt()
+    public string GetPrompt()
     {
         Random ran = new Random();
         if (_usedPrompts.Count == _prompts.Length)
@@ -46,7 +46,7 @@ public class ReflectionActivity : Activity
         return _prompts[_index];
     }
 
-    public string getQuestion()
+    public string GetQuestion()
     {
         Random ran = new Random();
 
@@ -65,7 +65,7 @@ public class ReflectionActivity : Activity
         return _questions[_index];
     }
 
-    public void runReflection()
+    public void RunReflection()
     {
 
         Start();
@@ -79,7 +79,7 @@ public class ReflectionActivity : Activity
         {
 
             Console.WriteLine("\nConsider the following prompt:");
-            Console.WriteLine($"\n--- {getPrompt()} ---");
+            Console.WriteLine($"\n--- {GetPrompt()} ---");
             Thread.Sleep(700);
             Console.WriteLine("\nWhen you have something in mind, press enter to continue.");
             Console.ReadLine();
@@ -90,7 +90,7 @@ public class ReflectionActivity : Activity
 
             while (!delayTask.IsCompleted)
             {
-                Console.Write($"{getQuestion()}");
+                Console.Write($"{GetQuestion()}");
                 Spinner();
                 Console.WriteLine("\n");
             }

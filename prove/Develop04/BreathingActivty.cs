@@ -9,7 +9,7 @@ public class BreathingActivity : Activity
 
     }
 
-    public void runBreathing()
+    public void RunBreathing()
     {
 
         Start();

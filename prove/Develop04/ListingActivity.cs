@@ -20,7 +20,7 @@ public class ListingActivity : Activity
 
     }
 
-    public string getPrompt()
+    public string GetPrompt()
     {
 
         Random ran = new Random();
@@ -40,14 +40,14 @@ public class ListingActivity : Activity
         return _prompts[_index];
     }
 
-    public void addUser(string userinput)
+    public void AddUser(string userinput)
     {
 
         _userList.Add(userinput);
 
     }
 
-    public void displayList()
+    public void DisplayList()
     {
         foreach (string item in _userList)
         {
@@ -56,7 +56,7 @@ public class ListingActivity : Activity
         Console.ReadLine();
     }
 
-    public void runListing()
+    public void RunListing()
     {
 
         Start();
@@ -66,7 +66,7 @@ public class ListingActivity : Activity
         Thread.Sleep(700);
         Console.WriteLine("List as many responses as you can to the following prompt:");
 
-        Console.WriteLine($"--- {getPrompt()} ---");
+        Console.WriteLine($"--- {GetPrompt()} ---");
         Thread.Sleep(700);
         Console.Write("You may begin in: ");
         CountDown(3);
@@ -78,11 +78,11 @@ public class ListingActivity : Activity
         while (!delayTask.IsCompleted)
         {
             Console.Write(">");
-            addUser(Console.ReadLine());
+            AddUser(Console.ReadLine());
         }
 
         Console.Clear();
-        displayList();
+        DisplayList();
         EndActivty();
 
 

@@ -26,7 +26,7 @@ class Program
                     type = "Breathing";
                     description = "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.";
                     BreathingActivity breathing = new BreathingActivity(type, description);
-                    breathing.runBreathing();
+                    breathing.RunBreathing();
                     break;
 
                 case "2":
@@ -34,7 +34,7 @@ class Program
                     type = "Reflection";
                     description = "This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.";
                     ReflectionActivity reflection = new ReflectionActivity(type, description);
-                    reflection.runReflection();
+                    reflection.RunReflection();
                     break;
 
                 case "3":
@@ -42,7 +42,7 @@ class Program
                     type = "Listing";
                     description = "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.";
                     ListingActivity listing = new ListingActivity(type, description);
-                    listing.runListing();
+                    listing.RunListing();
                     break;
 
                 case "4":
