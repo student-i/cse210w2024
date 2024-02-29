@@ -48,13 +48,16 @@ class Program
                 case "4":
 
                     Console.WriteLine("Goodbye!");
+                    Thread.Sleep(700);
                     Console.Clear();
                     break;
                 
                 default:
 
                     Console.WriteLine("Invalid choice. Please try again.");
+                    Thread.Sleep(700);
                     Console.Clear();
+
                     break;
 
 
