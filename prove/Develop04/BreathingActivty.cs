@@ -29,6 +29,7 @@ public class BreathingActivity : Activity
             CountDown(6);
         }
 
+
         EndActivty();
     }
 }
