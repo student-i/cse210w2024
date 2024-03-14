@@ -1,10 +1,14 @@
-using System;
-using System.IO.Enumeration;
+
+
+using System.Runtime.Serialization;
 
 class Program
 {
     static void Main(string[] args)
     {
+
+        bool levelUp = false;
+        string[] titles = { "Beginner", "Barley Started Mouse", "Really Getting Going Dog", "Almost a Master Bear", "Expert Unicorn" };
         List<string> _goals = new List<string>();
         string filename;
         int _totalPoints = 0;
@@ -13,8 +17,39 @@ class Program
 
         Console.WriteLine("Welcome to the Goal Tracker!");
 
+
         while (choice != "6")
         {
+            int i;
+            Console.WriteLine("\n");
+            if (levelUp == true)
+            {
+                Console.WriteLine("LEVEL UP!");
+                levelUp = false;
+            }
+            if (_totalPoints < 50)
+            {
+                i = 0;
+            }
+            else if (_totalPoints <= 500)
+            {
+                i = 1;
+            }
+            else if (_totalPoints <= 1500)
+            {
+                i = 2;
+            }
+            else if (_totalPoints <= 3000)
+            {
+                i = 3;
+            }
+            else
+            {
+                i = 4;
+            }
+
+            Console.WriteLine($"You are a {titles[i]} with");
+            Console.WriteLine($"\nAmmount of points: {_totalPoints}\n");
 
             Console.WriteLine("Menu Options:");
             Console.WriteLine("1. Create New Goal");
@@ -44,16 +79,22 @@ class Program
                         case "1":
 
                             SimpleGoal simpleGoal = new SimpleGoal(_goals, _totalPoints);
+                            simpleGoal.AddGoal(goalType);
+
                             break;
 
                         case "2":
 
                             EternalGoals eternalGoals = new EternalGoals(_goals, _totalPoints);
+                            eternalGoals.AddGoal(goalType);
+
                             break;
 
                         case "3":
 
                             ChecklistGoals checklistGoals = new ChecklistGoals(_goals, _totalPoints);
+                            checklistGoals.AddGoal(goalType);
+
                             break;
 
                         default:
@@ -75,6 +116,7 @@ class Program
                     filename = Console.ReadLine();
 
                     _goals.Add($"points,{_totalPoints}");
+
                     FileInteraction saveFile = new FileInteraction(filename);
                     saveFile.WriteFile(_goals);
 
@@ -92,7 +134,42 @@ class Program
                     break;
 
                 case "5":
+                    int num = 1;
+                    foreach (string item in _goals)
+                    {
 
+                        string[] part = item.Split(",");
+                        Console.WriteLine($"{num}. {part[1]}");
+                        num++;
+                    }
+                    Console.Write("Which goal did you accomplish? ");
+                    int goalNum = int.Parse(Console.ReadLine()) - 1;
+
+                    string[] parts = _goals[goalNum].Split(",");
+                    if (parts[0] == "checklist")
+                    {
+
+                        ChecklistGoals checklistGoals = new ChecklistGoals(_goals, _totalPoints);
+                        checklistGoals.RecordEvent(goalNum);
+                        _totalPoints = checklistGoals.GetCurrentPoints();
+
+                    }
+                    else if (parts[0] == "eternal")
+                    {
+                        EternalGoals eternalGoals = new EternalGoals(_goals, _totalPoints);
+                        eternalGoals.RecordEvent(goalNum);
+                        _totalPoints = eternalGoals.GetCurrentPoints();
+
+                    }
+                    else if (parts[0] == "simple")
+                    {
+                        SimpleGoal simpleGoal = new SimpleGoal(_goals, _totalPoints);
+                        simpleGoal.RecordEvent(goalNum);
+                        _totalPoints = simpleGoal.GetCurrentPoints();
+
+                    }
+                    Goal lGoal = new Goal(_goals, _totalPoints);
+                    levelUp = lGoal.DidLevelUp(goalNum, _totalPoints);
                     break;
 
                 case "6":

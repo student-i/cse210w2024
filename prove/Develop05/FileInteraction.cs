@@ -19,23 +19,27 @@ public class FileInteraction
     {
 
         _goals.AddRange(File.ReadAllLines(_fileName));
-        string pointsLine = _goals[_goals.Count-1];
+
+
+        string pointsLine = _goals[_goals.Count - 1];
         string[] parts = pointsLine.Split(",");
         _points = int.Parse(parts[1]);
         _goals.Remove(pointsLine);
 
     }
 
-    public void WriteFile( List<string> _newGoals)
+    public void WriteFile(List<string> newGoals)
     {
-        File.WriteAllLines(_fileName, _newGoals);
-        
+        File.WriteAllLines(_fileName, newGoals);
+
     }
 
-    public List<string> GetGoalList(){
+    public List<string> GetGoalList()
+    {
         return _goals;
     }
-    public int GetPoints(){
+    public int GetPoints()
+    {
         return _points;
     }
 
