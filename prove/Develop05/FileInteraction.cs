@@ -11,7 +11,7 @@ public class FileInteraction
     public FileInteraction(string filename)
     {
 
-        _fileName = "goals.txt";
+        _fileName = filename;
 
     }
 
